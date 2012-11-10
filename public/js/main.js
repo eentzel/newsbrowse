@@ -43,14 +43,18 @@ function markerClickHandler(marker) {
     showStoryDetails(marker.story);
 }
 
+function shouldExplode(cluster) {
+    return cluster.getMap().getZoom() <= 16;
+}
+
 function clusterClickHandler(cluster) {
-    if (cluster.getMap().getZoom() > 16) {
+    if (shouldExplode(cluster)) {
+        this.setZoomOnClick(true);
+    }
+    else {
         this.setZoomOnClick(false);
         var stories = cluster.getMarkers().map(function(m) {return m.story;});
         showStoryDetails(stories);
-    }
-    else {
-        this.setZoomOnClick(true);
     }
 }
 

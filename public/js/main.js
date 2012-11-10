@@ -44,7 +44,7 @@ function markerClickHandler(marker) {
 function initMap(mapOpts) {
     var theMap = new google.maps.Map(document.getElementById('map'), mapOpts);
 
-    $.ajax(WORLD_STORIES, {dataType: 'json'}).then(function (stories) {
+    $.ajax(WORLD_STORIES).then(function (stories) {
         var theMarkers = stories.map(function (story) {
             return new google.maps.Marker({
                 position: new google.maps.LatLng(story.location[0], story.location[1]),

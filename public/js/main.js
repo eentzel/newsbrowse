@@ -44,8 +44,8 @@ function initMap(mapOpts) {
             position: new google.maps.LatLng(l.location.latitude, l.location.longitude),
             story: {
                 description: "Get a dog up ya grouse no worries you little ripper budgie smugglers. It'll be aerial pingpong flamin as busy as a ugg boots. He hasn't got a smoko flamin he's got a massive fremantle doctor. Trent from punchy fair dinkum also trent from punchy blowie. We're going knock to mad as a outback.",
-                url: 'http://www.example.com/',
-                headline: 'This is a story'
+                story_url: 'http://www.example.com/',
+                title: 'This is a story'
             },
             title: l.full_address
         });

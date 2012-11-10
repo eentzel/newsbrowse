@@ -1,6 +1,6 @@
 {
   "name": "nko3-ateam",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ATeam",
   "main": "server.js",
   "scripts": {

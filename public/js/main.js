@@ -44,7 +44,12 @@ function markerClickHandler(marker) {
 }
 
 function shouldExplode(cluster) {
-    return cluster.getMap().getZoom() <= 16;
+    var span = cluster.getBounds().toSpan(),
+        lat = span.lat(),
+        lng = span.lng(),
+        distance = Math.sqrt(lat*lat + lng*lng);
+
+    return distance > 0;
 }
 
 function clusterClickHandler(cluster) {

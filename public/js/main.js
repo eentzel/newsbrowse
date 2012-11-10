@@ -44,8 +44,6 @@ function markerClickHandler(marker) {
 }
 
 function clusterClickHandler(cluster) {
-    console.log(cluster);
-
     if (cluster.getMap().getZoom() > 16) {
         this.setZoomOnClick(false);
         var stories = cluster.getMarkers().map(function(m) {return m.story;});

@@ -3,6 +3,7 @@ var env = require('./config/environment'),
     feedparser = require('feedparser'),
     mongoose = require('mongoose'),
     prompt = require('prompt'),
+    _ = require('underscore'),
     geocoder = require('geocoder');
 
 var Country = env.Country;
@@ -20,6 +21,9 @@ function processEntries() {
              console.log('Command-line input received:');
              console.log('location: ' + result.location);
              geocoder.geocode(result.location, function ( err, data ) {
+               var thumbnail = _.chain(entry.enclosures).pluck('url').filter(function(u) {
+                   return /jpg$/.test(u);
+               }).value()[0];
                latlng = data.results.shift();
                e = new NewsEntry({
                  guid : entry.guid,
@@ -27,6 +31,7 @@ function processEntries() {
                  description : entry.description,
                  created_at : entry.pubdate,
                  story_url : entry.link,
+                 thumb_url: thumbnail,
                  source_feed : 'http://www.nytimes.com/services/xml/rss/nyt/World.xml',
                  formatted_address : data.formatted_address,
                  location : [latlng.geometry.location.lat, latlng.geometry.location.lng]

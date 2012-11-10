@@ -1,6 +1,4 @@
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+@import "mixins.less";
 
 body {
     overflow: hidden;
@@ -47,20 +45,13 @@ body {
 }
 
 #story_details {
-    -webkit-transition: right .2s;
-    -moz-transition: right .2s;
-    -ms-transition: right .2s;
-    -o-transition: right .2s;
-    transition: right .2s;
+    .transition(right, .2s);
 
     position: absolute;
     top: 40px;
     bottom: 0;
 
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-
+    .border-box;
     padding: 30px;
     right: -33%;
     width: 33%;

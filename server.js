@@ -1,11 +1,6 @@
 var mongoose = require('mongoose');
 var mongoUri = 'mongodb://user:password@host:27017/database';
-// var db = mongoose.createConnection(mongoUri);
-// 
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-// 
-// });
+
 mongoose.connect(mongoUri, function(err) {
   if (err) throw err;
   console.log('Connected')

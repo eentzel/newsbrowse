@@ -1,22 +1,17 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
+#map {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 40px;
+    bottom: 0;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#map img {
+    /* work around Bootstrap / Google Maps CSS conflict */
+    /* https://github.com/twitter/bootstrap/issues/1552 */
+    max-width: none;
+}

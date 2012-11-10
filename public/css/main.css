@@ -44,6 +44,10 @@ body {
 
 #story_details {
     -webkit-transition: right .2s;
+    -moz-transition: right .2s;
+    -ms-transition: right .2s;
+    -o-transition: right .2s;
+    transition: right .2s;
 
     position: absolute;
     top: 40px;

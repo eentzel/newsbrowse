@@ -5,14 +5,14 @@ var WORLD_STORIES = 'http://localhost:8000/api/v1/stories/within?bottomleftlat=-
 
 $(document).ready(function () {
     var mapOpts = {
-        center: new google.maps.LatLng(38.9695, -98.1347),
-        zoom: 4,
+        center: new google.maps.LatLng(48.54416, 89.95123),
+        zoom: 3,
         minZoom: 2,
         mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_LEFT },
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.SATELLITE
     };
 
-    if ("geolocation" in navigator) {
+    if (false && "geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(p) {
             mapOpts.center = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
             mapOpts.zoom = 11;

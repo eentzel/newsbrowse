@@ -34,7 +34,7 @@ app.configure(function () {
 
 app.get('/api/v1/stories/top', function (req, res) {
   NewsEntry.find({}).limit(50).execFind(function (err,data) {
-    res.send(JSON.stringify(data));
+    res.json(data);
   });
 });
 
@@ -43,7 +43,7 @@ app.get('/api/v1/stories/near', function (req, res) {
   var lng = parseFloat(req.query["lng"] || '145.079616');
   var maxDistance = parseFloat(req.query["max_distance"] || '0.1');
   NewsEntry.find({location: { "$nearSphere" : [lat, lng], "$maxDistance" : maxDistance } }).limit(50).execFind(function (err,data) {
-    res.send(JSON.stringify(data));
+    res.json(data);
   });
 });
 
@@ -53,7 +53,7 @@ app.get('/api/v1/stories/within', function (req, res) {
   var toprightlat = parseFloat(req.query["toprightlat"] || '-37.860283');
   var toprightlng = parseFloat(req.query["toprightlng"] || '145.079616');
   NewsEntry.find({location: { "$within" : { "$box" : [[bottomleftlat, bottomleftlng],[toprightlat, toprightlng]] } } }).limit(50).execFind(function (err,data) {
-    res.send(JSON.stringify(data));
+    res.json(data);
   });
 });
 

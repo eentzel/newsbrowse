@@ -44,12 +44,18 @@ body {
 
 #story_details {
     -webkit-transition: right .2s;
-    padding: 30px;
+
     position: absolute;
-    right: -360px;
     top: 40px;
     bottom: 0;
-    width: 300px;
+
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    padding: 30px;
+    right: -33%;
+    width: 33%;
 }
 
 #story_details.expanded {

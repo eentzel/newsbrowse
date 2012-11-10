@@ -75,7 +75,7 @@ function initMap(mapOpts) {
             });
         });
 
-        var theClusterer = new MarkerClusterer(theMap, theMarkers);
+        var theClusterer = new MarkerClusterer(theMap, theMarkers, {averageCenter: true});
         theMarkers.forEach(function (marker) {
             google.maps.event.addListener(marker, 'click', markerClickHandler.bind(this, marker));
         });

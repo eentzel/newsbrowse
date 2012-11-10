@@ -31,16 +31,29 @@ $(document).ready(function () {
 
 });
 
-function showStoryDetails(story) {
+function showStoryDetails(stories) {
     var detailsTemplate = $('#details_template').html();
 
     $('#story_details')
-        .html(Mustache.to_html(detailsTemplate, story))
+        .html(Mustache.to_html(detailsTemplate, {stories: stories}))
         .addClass('expanded');
 }
 
 function markerClickHandler(marker) {
     showStoryDetails(marker.story);
+}
+
+function clusterClickHandler(cluster) {
+    console.log(cluster);
+
+    if (cluster.getMap().getZoom() > 16) {
+        this.setZoomOnClick(false);
+        var stories = cluster.getMarkers().map(function(m) {return m.story;});
+        showStoryDetails(stories);
+    }
+    else {
+        this.setZoomOnClick(true);
+    }
 }
 
 function initMap(mapOpts) {
@@ -56,9 +69,9 @@ function initMap(mapOpts) {
         });
 
         var theClusterer = new MarkerClusterer(theMap, theMarkers);
-
         theMarkers.forEach(function (marker) {
             google.maps.event.addListener(marker, 'click', markerClickHandler.bind(this, marker));
         });
+        google.maps.event.addListener(theClusterer, 'click', clusterClickHandler);
     });
 }

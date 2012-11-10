@@ -8,6 +8,7 @@ var app = express();
 // Database
 var mongoUri = 'mongodb://user:password@host:27017/database';
 
+mongoose.set('debug', true);
 mongoose.connect(mongoUri, function(err) {
   if (err) throw err;
 });
@@ -30,8 +31,17 @@ app.configure(function () {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
-app.get('/api', function (req, res) {
-  NewsEntry.find({}).limit(1).execFind(function (err,data) {
+app.get('/api/v1/stories/top', function (req, res) {
+  NewsEntry.find({}).limit(50).execFind(function (err,data) {
+    res.send(JSON.stringify(data));
+  });
+});
+
+app.get('/api/v1/stories/near', function (req, res) {
+  var lat = parseFloat(req.query["lat"] || '-37.860283');
+  var lng = parseFloat(req.query["lng"] || '145.079616');
+  var maxDistance = parseFloat(req.query["max_distance"] || '0.1');
+  NewsEntry.find({location: { "$nearSphere" : [lat, lng], "$maxDistance" : maxDistance } }).limit(50).execFind(function (err,data) {
     res.send(JSON.stringify(data));
   });
 });

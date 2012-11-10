@@ -30,7 +30,7 @@ app.configure(function () {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
-app.get('/', function (req, res) {
+app.get('/api', function (req, res) {
   NewsEntry.find({}).limit(1).execFind(function (err,data) {
     res.send(JSON.stringify(data));
   });

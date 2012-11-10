@@ -6,6 +6,7 @@ $(document).ready(function () {
     var mapOpts = {
         center: new google.maps.LatLng(38.9695, -98.1347),
         zoom: 4,
+        mapTypeControlOptions: { position: google.maps.ControlPosition.BOTTOM_LEFT },
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 

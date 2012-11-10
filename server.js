@@ -1,25 +1,12 @@
 var application_root = __dirname,
     express = require("express"),
-    path = require("path"),
-    mongoose = require('mongoose');
+    path = require("path");
+var env = require('./config/environment');
 
 var app = express();
 
-// Database
-var mongoUri = 'mongodb://user:password@host:27017/database';
-
-mongoose.set('debug', true);
-mongoose.connect(mongoUri, function(err) {
-  if (err) throw err;
-});
-
-var newsEntrySchema = new mongoose.Schema({
-    title: String,
-    topic: String,
-    weighting: Number,
-    loc : {lat: Number,  lng: Number },
-});
-var NewsEntry = mongoose.model('NewsEntry', newsEntrySchema);
+var Country = env.Country;
+var NewsEntry = env.NewsEntry;
 
 // Config
 

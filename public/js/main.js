@@ -1,5 +1,7 @@
 /* global google MarkerClusterer $ */
 
+var WORLD_STORIES = 'http://localhost:8000/api/v1/stories/within?bottomleftlat=-89.48765458372031&bottomleftlng=-180&toprightlat=89.44365991287759&toprightlng=180';
+
 $(document).ready(function () {
     var mapOpts = {
         center: new google.maps.LatLng(38.9695, -98.1347),
@@ -39,20 +41,20 @@ function markerClickHandler(marker) {
 
 function initMap(mapOpts) {
     var theMap = new google.maps.Map(document.getElementById('map'), mapOpts);
-    var theMarkers = locations.map(function (l) {
-        return new google.maps.Marker({
-            position: new google.maps.LatLng(l.location.latitude, l.location.longitude),
-            story: {
-                description: "Get a dog up ya grouse no worries you little ripper budgie smugglers. It'll be aerial pingpong flamin as busy as a ugg boots. He hasn't got a smoko flamin he's got a massive fremantle doctor. Trent from punchy fair dinkum also trent from punchy blowie. We're going knock to mad as a outback.",
-                story_url: 'http://www.example.com/',
-                title: 'This is a story'
-            },
-            title: l.full_address
-        });
-    });
-    var theClusterer = new MarkerClusterer(theMap, theMarkers);
 
-    theMarkers.forEach(function (marker) {
-        google.maps.event.addListener(marker, 'click', markerClickHandler.bind(this, marker));
+    $.ajax(WORLD_STORIES, {dataType: 'json'}).then(function (stories) {
+        var theMarkers = stories.map(function (story) {
+            return new google.maps.Marker({
+                position: new google.maps.LatLng(story.location[0], story.location[1]),
+                story: story,
+                title: story.title
+            });
+        });
+
+        var theClusterer = new MarkerClusterer(theMap, theMarkers);
+
+        theMarkers.forEach(function (marker) {
+            google.maps.event.addListener(marker, 'click', markerClickHandler.bind(this, marker));
+        });
     });
 }

@@ -1,9 +1,15 @@
-var mongoose = require('mongoose');
+var application_root = __dirname,
+    express = require("express"),
+    path = require("path"),
+    mongoose = require('mongoose');
+
+var app = express();
+
+// Database
 var mongoUri = 'mongodb://user:password@host:27017/database';
 
 mongoose.connect(mongoUri, function(err) {
   if (err) throw err;
-  console.log('Connected')
 });
 
 var newsEntrySchema = new mongoose.Schema({
@@ -14,14 +20,22 @@ var newsEntrySchema = new mongoose.Schema({
 });
 var NewsEntry = mongoose.model('NewsEntry', newsEntrySchema);
 
+// Config
 
-var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  
+app.configure(function () {
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.static(path.join(application_root, "public")));
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+});
+
+app.get('/', function (req, res) {
   NewsEntry.find({}).limit(1).execFind(function (err,data) {
-    res.end(JSON.stringify(data));
+    res.send(JSON.stringify(data));
   });
-}).listen(8000);
+});
+
+app.listen(8000);
 
 console.log('Server running at http://0.0.0.0:8000/');

@@ -28,6 +28,11 @@ $(document).ready(function () {
         evt.preventDefault();
         $('#story_details').removeClass('expanded');
     });
+    $(document).keyup(function(evt) {
+        if (evt.which === 27) { // ESC
+            $('#story_details').removeClass('expanded');
+        }
+    });
 
 });
 

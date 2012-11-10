@@ -6,6 +6,10 @@ body {
     overflow: hidden;
 }
 
+.nav iframe {
+    margin-top: 8px;
+}
+
 #map {
     position: absolute;
     left: 0;

@@ -8,6 +8,7 @@ $(document).ready(function () {
         center: new google.maps.LatLng(48.54416, 89.95123),
         zoom: 3,
         minZoom: 2,
+        backgroundColor: 'rgb(21, 21, 21)',
         mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_LEFT },
         mapTypeId: google.maps.MapTypeId.SATELLITE
     };

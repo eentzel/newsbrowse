@@ -46,6 +46,16 @@ app.get('/api/v1/stories/near', function (req, res) {
   });
 });
 
+app.get('/api/v1/stories/within', function (req, res) {
+  var bottomleftlat = parseFloat(req.query["bottomleftlat"] || '-37.860283');
+  var bottomleftlng = parseFloat(req.query["bottomleftlng"] || '145.079616');
+  var toprightlat = parseFloat(req.query["toprightlat"] || '-37.860283');
+  var toprightlng = parseFloat(req.query["toprightlng"] || '145.079616');
+  NewsEntry.find({location: { "$within" : { "$box" : [[bottomleftlat, bottomleftlng],[toprightlat, toprightlng]] } } }).limit(50).execFind(function (err,data) {
+    res.send(JSON.stringify(data));
+  });
+});
+
 app.listen(8000);
 
 console.log('Server running at http://0.0.0.0:8000/');

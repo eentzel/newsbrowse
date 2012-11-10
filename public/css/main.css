@@ -2,6 +2,10 @@
    Author's custom styles
    ========================================================================== */
 
+body {
+    overflow: hidden;
+}
+
 #map {
     position: absolute;
     left: 0;
@@ -14,4 +18,40 @@
     /* work around Bootstrap / Google Maps CSS conflict */
     /* https://github.com/twitter/bootstrap/issues/1552 */
     max-width: none;
+}
+
+.template {
+    display: none;
+}
+
+#details_close {
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: inherit;
+}
+
+#details_close:hover {
+    text-decoration: none;
+}
+
+#story_details {
+    background-color: rgba(21, 21, 21, 0.84);
+    color: #ccc;
+}
+
+#story_details {
+    -webkit-transition: right .2s;
+    padding: 30px;
+    position: absolute;
+    right: -360px;
+    top: 40px;
+    bottom: 0;
+    width: 300px;
+}
+
+#story_details.expanded {
+    right: 0;
 }

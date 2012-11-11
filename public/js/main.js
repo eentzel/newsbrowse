@@ -92,7 +92,7 @@ function initMap(mapOpts) {
 
     $.ajax(WORLD_STORIES).then(function (stories) {
         var theMarkers = stories.map(function (story) {
-            return new google.maps.Marker({
+            return new StoryMarker({
                 position: new google.maps.LatLng(story.location[0], story.location[1]),
                 story: story,
                 icon: icons.next(),
@@ -102,7 +102,7 @@ function initMap(mapOpts) {
 
         var theClusterer = new MarkerClusterer(theMap, theMarkers, {averageCenter: true});
         theMarkers.forEach(function (marker) {
-            google.maps.event.addListener(marker, 'click', markerClickHandler.bind(this, marker));
+            $(marker.element).on('click', markerClickHandler.bind(this, marker));
         });
         google.maps.event.addListener(theClusterer, 'click', clusterClickHandler);
     });

@@ -14,17 +14,17 @@ var City = env.City;
 
 var feeds = ['http://feeds.reuters.com/Reuters/worldNews', 'http://feeds.reuters.com/Reuters/domesticNews'];
 
-function toEntry(entry, loc) {
+function toEntry(entry, loc, callback) {
   var thumbnail = _.chain(entry.enclosures).pluck('url').filter(function(u) {
                     return /jpg$/.test(u);
                   }).value()[0];
-  e = {
+
+  var e = {
     guid : entry.guid,
     title : entry.title,
     description : entry.description.replace(/<[^>]*>/g, '').trim(),
     created_at : entry.pubdate,
     story_url : entry.link,
-    thumb_url: thumbnail || "",
     source_feed: entry.meta.xmlurl
   };
   if(loc['latitude']) {
@@ -35,7 +35,14 @@ function toEntry(entry, loc) {
     e['location'] = loc.location;
     e['formatted_address'] = loc.name;
   }
-  return e;
+
+  if (thumbnail) {
+    e.thumb_url = thumbnail;
+    callback(e);
+  }
+  else {
+    callback(e);
+  }
 }
 
 function saveEntry(e) {
@@ -84,15 +91,10 @@ function findCity(entry, content, country) {
         }
       }) ? true : false;
     });
-    var firstCity = mentionedCities; //_.first(mentionedCities)
-    var e = null;
-    if(firstCity==undefined) {
-      e = toEntry(entry, country);
-    }
-    else {
-      e = toEntry(entry, firstCity);
-    }
-    saveEntry(e);
+    var firstCity = mentionedCities || country;
+    toEntry(entry, firstCity, function(e) {
+        saveEntry(e);
+    });
   });
 }
 

@@ -27,6 +27,12 @@ $(document).ready(function () {
         evt.preventDefault();
         $('#story_details').removeClass('expanded');
     });
+
+    $('#map').on('mouseover', '.story_marker', function(evt) {
+        $('.story_marker').css('z-index', 'auto');
+        $(this).css('z-index', 2);
+    });
+
     $(document).keyup(function(evt) {
         if (evt.which === 27) { // ESC
             $('#story_details').removeClass('expanded');

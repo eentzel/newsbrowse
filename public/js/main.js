@@ -112,5 +112,12 @@ function initMap(mapOpts) {
             $(marker.element).on('click', markerClickHandler.bind(this, marker));
         });
         // google.maps.event.addListener(theClusterer, 'click', clusterClickHandler);
+        google.maps.event.addListener(theMap, 'zoom_changed', function () {
+            var z = theMap.getZoom();
+            $('#map').removeClass('zoom1 zoom2 zoom3 zoom4');
+            if (z < 5) {
+                $('#map').addClass('zoom' + z);
+            }
+        });
     });
 }

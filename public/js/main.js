@@ -59,6 +59,7 @@ function showStoryDetails(stories) {
 
 function markerClickHandler(marker) {
   showStoryDetails(marker.story);
+  mixpanel.track("Show story details  - " + marker.story.guid);
 }
 
 function shouldExplode(cluster) {

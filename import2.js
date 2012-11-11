@@ -21,7 +21,7 @@ function toEntry(entry, loc) {
   e = {
     guid : entry.guid,
     title : entry.title,
-    description : entry.description,
+    description : entry.description.replace(/<[^>]*>/g, '').trim(),
     created_at : entry.pubdate,
     story_url : entry.link,
     thumb_url: thumbnail || "",

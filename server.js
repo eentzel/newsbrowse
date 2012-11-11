@@ -11,6 +11,8 @@ var app = express(),
 var Country = env.Country;
 var NewsEntry = env.NewsEntry;
 
+var reuters = require('./lib/reuters');
+
 // Config
 
 app.configure(function () {
@@ -65,5 +67,10 @@ io.sockets.on('connection', function (socket) {
     clearInterval(tick);
   });
 });
+
+reuters.fetchFeeds();
+setInterval(function() {
+  reuters.fetchFeeds();
+}, 120000);
 
 console.log('Server running at http://0.0.0.0:8000/');

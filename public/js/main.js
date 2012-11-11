@@ -81,6 +81,13 @@ function clusterClickHandler(cluster) {
   }
 }
 
+function jitter(loc) {
+  return new google.maps.LatLng(
+    loc[0] + Math.random() / 10,
+    loc[1] + Math.random() / 10
+  );
+}
+
 function initMap(mapOpts) {
   var theMap = new google.maps.Map(document.getElementById('map'), mapOpts);
   $('#map').addClass(theMap.getMapTypeId());
@@ -89,10 +96,11 @@ function initMap(mapOpts) {
   socket.on('news', function (stories) {
     var theMarkers = stories.map(function (story) {
       var m;
+      var location = jitter(story.location);
       story.date = (new Date(story.created_at)).toDateString();
       if (story.main_image) {
         m = new StoryMarker({
-          position: new google.maps.LatLng(story.location[0], story.location[1]),
+          position: location,
           story: story,
           icon: story.main_image,
           title: story.title
@@ -101,7 +109,7 @@ function initMap(mapOpts) {
       }
       else {
         m = new google.maps.Marker({
-          position: new google.maps.LatLng(story.location[0], story.location[1]),
+          position: location,
           story: story,
           title: story.title
         });

@@ -1,35 +1,37 @@
-.story_marker {
-    .transition(border-color, .2s);
-    border: 2px solid #ccc;
-    width: 75px;
-    height: 75px;
+.marker_size(@size) {
+    max-height: @size;
+    max-width: @size;
 }
 
-.roadmap .story_marker {
-    border-color: #333;
-}
+#map {
+    .story_marker {
+        .transition(border-color, .2s);
+        .marker_size(75px);
+        border: 2px solid #ccc;
+    }
 
-.story_marker:hover {
-    .transform(rotate(3deg));
-    cursor: pointer;
-}
+    &.roadmap .story_marker {
+        border-color: #333;
+    }
 
-.zoom4 .story_marker {
-    width: 70px;
-    height: 70px;
-}
+    .story_marker:hover {
+        .transform(rotate(3deg));
+        cursor: pointer;
+    }
 
-.zoom3 .story_marker {
-    width: 65px;
-    height: 65px;
-}
+    &.zoom4 .story_marker {
+        .marker_size(70px);
+    }
 
-.zoom2 .story_marker {
-    width: 60px;
-    height: 60px;
-}
+    &.zoom3 .story_marker {
+        .marker_size(65px);
+    }
 
-.zoom1 .story_marker {
-    width: 55px;
-    height: 55px;
+    &.zoom2 .story_marker {
+        .marker_size(60px);
+    }
+
+    &.zoom1 .story_marker {
+        .marker_size(55px);
+    }
 }

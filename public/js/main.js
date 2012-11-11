@@ -4,6 +4,7 @@ var WORLD_STORIES = '/api/v1/stories/top';
 
 $(document).ready(function () {
   var mapOpts = {
+    // if changing center and mapTypeId, also change the corresponding class names on div#map in index.html
     center: new google.maps.LatLng(48.54416, 89.95123),
     zoom: 3,
     minZoom: 2,
@@ -114,4 +115,9 @@ function initMap(mapOpts) {
       $('#map').addClass('zoom' + z);
     }
   });
+
+  google.maps.event.addListener(theMap, 'maptypeid_changed', function () {
+    $('#map').removeClass('roadmap satellite').addClass(theMap.getMapTypeId());
+  });
+
 }

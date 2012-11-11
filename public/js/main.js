@@ -73,46 +73,39 @@ function clusterClickHandler(cluster) {
     }
 }
 
-var icons = (function() {
-    var i = 0;
-    var choices = [
-        'http://graphics8.nytimes.com/images/2012/11/08/world/asia/20121108BEIJING-slide-05W8/20121108BEIJING-slide-05W8-thumbStandard.jpg',
-        'http://graphics8.nytimes.com/images/2012/11/11/world/PACIFIC/PACIFIC-thumbStandard.jpg',
-        'http://graphics8.nytimes.com/images/2012/11/11/fashion/11PLAYBOY_SPAN/11PLAYBOY_SPAN-thumbStandard.jpg',
-        'http://graphics8.nytimes.com/images/2012/11/10/world/egypt1/egypt1-thumbStandard.jpg',
-        'http://graphics8.nytimes.com/images/2012/10/13/world/asia/gandhi-nehru-dynasty-slide-C1SX/gandhi-nehru-dynasty-slide-C1SX-thumbStandard.jpg',
-        'http://graphics8.nytimes.com/images/2012/11/10/world/10iht-manila-babies/10iht-manila-babies-thumbStandard-v2.jpg',
-        'http://graphics8.nytimes.com/images/2012/11/07/world/middleeast/07lede_israel1/07lede_israel1-thumbStandard.jpg'
-    ];
-
-    return {
-        next: function() {
-            i = (i + 1) % choices.length;
-            return choices[i];
-        }
-    };
-})();
-
 function initMap(mapOpts) {
     var theMap = new google.maps.Map(document.getElementById('map'), mapOpts);
+
     var socket = io.connect();
     socket.on('news', function (stories) {
       var theMarkers = stories.map(function (story) {
-          return new StoryMarker({
-              position: new google.maps.LatLng(story.location[0], story.location[1]),
-              story: story,
-              icon: icons.next(),
-              title: story.title
+        var m;
+        if (story.main_image) {
+          m = new StoryMarker({
+            position: new google.maps.LatLng(story.location[0], story.location[1]),
+            story: story,
+            icon: story.main_image,
+            title: story.title
           });
+          $(m.element).on('click', markerClickHandler.bind(this, m));
+        }
+        else {
+          m = new google.maps.Marker({
+            position: new google.maps.LatLng(story.location[0], story.location[1]),
+            story: story,
+            title: story.title
+          });
+          google.maps.event.addListener(m, 'click', markerClickHandler.bind(this, m));
+        }
+        return m;
       });
 
       // var theClusterer = new MarkerClusterer(theMap, theMarkers, {averageCenter: true});
       theMarkers.forEach(function (marker) {
           marker.setMap(theMap);
-          $(marker.element).on('click', markerClickHandler.bind(this, marker));
       });
     });
-    
+
     // google.maps.event.addListener(theClusterer, 'click', clusterClickHandler);
     google.maps.event.addListener(theMap, 'zoom_changed', function () {
         var z = theMap.getZoom();

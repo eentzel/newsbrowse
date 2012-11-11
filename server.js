@@ -50,17 +50,16 @@ app.get('/api/v1/stories/within', function (req, res) {
 server.listen(8000);
 
 io.sockets.on('connection', function (socket) {
-  NewsEntry.find({}).limit(5).execFind(function (err,data) {
-    socket.emit('news', data);
-  });
-
-  var offset = 5;
-  var tick = setInterval(function() {
+  var offset = 0;
+  var push = function() {
     NewsEntry.find({}).skip(offset).limit(5).execFind(function (err,data) {
       socket.emit('news', data);
       offset += data.length;
     });
-  }, 5000);
+  };
+
+  push();
+  var tick = setInterval(push, 5000);
 
   socket.on('disconnect', function () {
     clearInterval(tick);

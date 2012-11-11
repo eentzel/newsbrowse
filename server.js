@@ -53,12 +53,18 @@ io.sockets.on('connection', function (socket) {
   NewsEntry.find({}).limit(5).execFind(function (err,data) {
     socket.emit('news', data);
   });
-  
-  setTimeout(function() {
-    NewsEntry.find({}).skip(5).limit(5).execFind(function (err,data) {
+
+  var offset = 5;
+  var tick = setInterval(function() {
+    NewsEntry.find({}).skip(offset).limit(5).execFind(function (err,data) {
       socket.emit('news', data);
+      offset += data.length;
     });
   }, 5000);
+
+  socket.on('disconnect', function () {
+    clearInterval(tick);
+  });
 });
 
 console.log('Server running at http://0.0.0.0:8000/');

@@ -65,7 +65,7 @@ io.sockets.on('connection', function (socket) {
   var offset = 0;
   var push = function(limit) {
     limit = (typeof limit === "undefined") ? PUSH_SIZE : limit;
-    NewsEntry.find({}).skip(offset).limit(limit).execFind(function (err,data) {
+    NewsEntry.find({expired : { '$ne' :true }}).skip(offset).limit(limit).sort('created_at').execFind(function (err,data) {
       socket.emit('news', data);
       offset += data.length;
     });

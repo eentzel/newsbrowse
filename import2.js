@@ -56,15 +56,19 @@ function saveEntry(e) {
 
 
 function handleEntry(entry) {
-  var content = _.str.stripTags(entry.title + " - " + entry.description + " - " + entry.summary);
-  var firstCountry = findCountry(content);
+  //var content = _.str.stripTags(entry.title + " - " + entry.description + " - " + entry.summary);
+  //var firstCountry = findCountry(content);
   // var aboutCities = _.map(aboutCountries, function(country) {
   //   return [country, findCity(content, country)];
   // });
   //var firstCountry = _.first(aboutCountries);
-  console.log(firstCountry);
-  if(firstCountry==undefined) return false; 
-  findCity(entry, content, firstCountry);
+  //console.log(firstCountry);
+  //if(firstCountry==undefined) return false;
+  if(entry.description.search('(Reuters)')>0) {
+    var result = _.str.strip(_.first(_.str.words(entry.description, '(Reuters)')));
+    var city  = _.first(_.first(result.split(',')).split(','));
+    findCity(entry, city);
+  }
 }
 
 function findCountry(content) {
@@ -78,7 +82,7 @@ function findCountry(content) {
   });
 }
 
-function findCity(entry, content, country) {
+function findCityWithCountry(entry, content, country) {
   //.where('asciiname').equals(/^New/)
   City.find({country_code : country.iso_code }).sort('-population').execFind(function(err, cities) {
     var mentionedCities = _.find(cities, function(city) {
@@ -97,6 +101,18 @@ function findCity(entry, content, country) {
     toEntry(entry, firstCity, function(e) {
         saveEntry(e);
     });
+  });
+}
+
+function findCity(entry, cityname) {
+  //.where('asciiname').equals(/^New/)
+  City.find({asciiname : new RegExp(cityname, "i")}).sort('-population').execFind(function(err, cities) {
+    var firstCity = _.first(cities);
+    if(firstCity) {
+      toEntry(entry, firstCity, function(e) {
+          saveEntry(e);
+      });
+    }
   });
 }
 

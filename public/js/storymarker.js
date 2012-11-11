@@ -69,10 +69,12 @@ var StoryMarker = (function () {
      */
     Marker.prototype.draw = function() {
         var proj = this.getProjection(),
-            markerXY = proj.fromLatLngToDivPixel( this.position );
+            markerXY = proj.fromLatLngToDivPixel( this.position ),
+            left = markerXY.x - this.element.offsetWidth/2,
+            top = markerXY.y - this.element.offsetHeight/2;
 
-        this.element.style.left = markerXY.x + 'px';
-        this.element.style.top = markerXY.y + 'px';
+        this.element.style.left = left + 'px';
+        this.element.style.top = top + 'px';
     };
 
     return Marker;

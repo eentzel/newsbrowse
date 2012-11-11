@@ -95,29 +95,30 @@ var icons = (function() {
 
 function initMap(mapOpts) {
     var theMap = new google.maps.Map(document.getElementById('map'), mapOpts);
+    var socket = io.connect();
+    socket.on('news', function (stories) {
+      var theMarkers = stories.map(function (story) {
+          return new StoryMarker({
+              position: new google.maps.LatLng(story.location[0], story.location[1]),
+              story: story,
+              icon: icons.next(),
+              title: story.title
+          });
+      });
 
-    $.ajax(WORLD_STORIES).then(function (stories) {
-        var theMarkers = stories.map(function (story) {
-            return new StoryMarker({
-                position: new google.maps.LatLng(story.location[0], story.location[1]),
-                story: story,
-                icon: icons.next(),
-                title: story.title
-            });
-        });
-
-        // var theClusterer = new MarkerClusterer(theMap, theMarkers, {averageCenter: true});
-        theMarkers.forEach(function (marker) {
-            marker.setMap(theMap);
-            $(marker.element).on('click', markerClickHandler.bind(this, marker));
-        });
-        // google.maps.event.addListener(theClusterer, 'click', clusterClickHandler);
-        google.maps.event.addListener(theMap, 'zoom_changed', function () {
-            var z = theMap.getZoom();
-            $('#map').removeClass('zoom1 zoom2 zoom3 zoom4');
-            if (z < 5) {
-                $('#map').addClass('zoom' + z);
-            }
-        });
+      // var theClusterer = new MarkerClusterer(theMap, theMarkers, {averageCenter: true});
+      theMarkers.forEach(function (marker) {
+          marker.setMap(theMap);
+          $(marker.element).on('click', markerClickHandler.bind(this, marker));
+      });
+    });
+    
+    // google.maps.event.addListener(theClusterer, 'click', clusterClickHandler);
+    google.maps.event.addListener(theMap, 'zoom_changed', function () {
+        var z = theMap.getZoom();
+        $('#map').removeClass('zoom1 zoom2 zoom3 zoom4');
+        if (z < 5) {
+            $('#map').addClass('zoom' + z);
+        }
     });
 }

@@ -1,9 +1,12 @@
 var application_root = __dirname,
     express = require("express"),
     path = require("path");
+var io = require('socket.io');
 var env = require('./config/environment');
 
-var app = express();
+var app = express(),
+   server = require('http').createServer(app),
+   io = io.listen(server);
 
 var Country = env.Country;
 var NewsEntry = env.NewsEntry;
@@ -44,6 +47,18 @@ app.get('/api/v1/stories/within', function (req, res) {
   });
 });
 
-app.listen(8000);
+server.listen(8000);
+
+io.sockets.on('connection', function (socket) {
+  NewsEntry.find({}).limit(5).execFind(function (err,data) {
+    socket.emit('news', data);
+  });
+  
+  setTimeout(function() {
+    NewsEntry.find({}).skip(5).limit(5).execFind(function (err,data) {
+      socket.emit('news', data);
+    });
+  }, 5000);
+});
 
 console.log('Server running at http://0.0.0.0:8000/');

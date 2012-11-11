@@ -1,3 +1,8 @@
+var FETCH_FREQUENCY=process.env.FETCH_FREQUENCY || 300000;
+var FIRST_PUSH_SIZE=process.env.FIRST_PUSH_SIZE || 100;
+var PUSH_SIZE=process.env.PUSH_SIZE || 20;
+var PUSH_FREQUENCY=process.env.PUSH_FREQUENCY || 5000;
+
 var application_root = __dirname,
     express = require("express"),
     path = require("path");
@@ -54,15 +59,15 @@ server.listen(8000);
 io.sockets.on('connection', function (socket) {
   var offset = 0;
   var push = function(limit) {
-    limit = (typeof limit === "undefined") ? 10 : limit;
+    limit = (typeof limit === "undefined") ? PUSH_SIZE : limit;
     NewsEntry.find({}).skip(offset).limit(limit).execFind(function (err,data) {
       socket.emit('news', data);
       offset += data.length;
     });
   };
 
-  push(100);
-  var tick = setInterval(push, 10000);
+  push(FIRST_PUSH_SIZE);
+  var tick = setInterval(push, PUSH_FREQUENCY);
 
   socket.on('disconnect', function () {
     clearInterval(tick);
@@ -72,6 +77,6 @@ io.sockets.on('connection', function (socket) {
 reuters.fetchFeeds();
 setInterval(function() {
   reuters.fetchFeeds();
-}, 300000);
+}, FETCH_FREQUENCY);
 
 console.log('Server running at http://0.0.0.0:8000/');

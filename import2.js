@@ -10,11 +10,7 @@ var Country = env.Country;
 var NewsEntry = env.NewsEntry;
 var City = env.City;
 
-//var feeds = ['http://feeds.bbci.co.uk/news/world/rss.xml', 
-//'http://www.nytimes.com/services/xml/rss/nyt/World.xml', 
-var feeds = ['http://feeds.reuters.com/Reuters/worldNews', 'http://feeds.reuters.com/Reuters/domesticNews', 'http://www.nytimes.com/services/xml/rss/nyt/World.xml'];
-
-//var source_feed = 'http://feeds.bbci.co.uk/news/world/rss.xml';
+var feeds = ['http://feeds.reuters.com/Reuters/worldNews', 'http://feeds.reuters.com/Reuters/domesticNews'];
 
 function toEntry(entry, loc) {
   var thumbnail = _.chain(entry.enclosures).pluck('url').filter(function(u) {
@@ -27,6 +23,7 @@ function toEntry(entry, loc) {
     created_at : entry.pubdate,
     story_url : entry.link,
     thumb_url: thumbnail || "",
+    source_feed: entry.meta.xmlurl
   };
   if(loc.latitude) {
     e['location'] = [loc.latitude, loc.longitude];

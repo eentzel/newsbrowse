@@ -1,0 +1,197 @@
+{
+    "title": "Yemen tribal leader held under house arrest over al Qaeda ties",
+    "description": "ADEN (Reuters) - A tribal leader suspected of links to al Qaeda was put under house arrest on Saturday in the southern city of Aden after security forces warned him a week ago to hand himself over to the authorities, an official said.<div class=\"feedflare\">\r\n<a href=\"http://feeds.reuters.com/~ff/Reuters/worldNews?a=yCKXoVdS-fs:QbEvgy6qK30:yIl2AUoC8zA\"><img src=\"http://feeds.feedburner.com/~ff/Reuters/worldNews?d=yIl2AUoC8zA\" border=\"0\"></img></a> <a href=\"http://feeds.reuters.com/~ff/Reuters/worldNews?a=yCKXoVdS-fs:QbEvgy6qK30:F7zBnMyn0Lo\"><img src=\"http://feeds.feedburner.com/~ff/Reuters/worldNews?i=yCKXoVdS-fs:QbEvgy6qK30:F7zBnMyn0Lo\" border=\"0\"></img></a> <a href=\"http://feeds.reuters.com/~ff/Reuters/worldNews?a=yCKXoVdS-fs:QbEvgy6qK30:V_sGLiPBpWU\"><img src=\"http://feeds.feedburner.com/~ff/Reuters/worldNews?i=yCKXoVdS-fs:QbEvgy6qK30:V_sGLiPBpWU\" border=\"0\"></img></a>\r\n</div><img src=\"http://feeds.feedburner.com/~r/Reuters/worldNews/~4/yCKXoVdS-fs\" height=\"1\" width=\"1\"/>",
+    "summary": "ADEN (Reuters) - A tribal leader suspected of links to al Qaeda was put under house arrest on Saturday in the southern city of Aden after security forces warned him a week ago to hand himself over to the authorities, an official said.<div class=\"feedflare\">\r\n<a href=\"http://feeds.reuters.com/~ff/Reuters/worldNews?a=yCKXoVdS-fs:QbEvgy6qK30:yIl2AUoC8zA\"><img src=\"http://feeds.feedburner.com/~ff/Reuters/worldNews?d=yIl2AUoC8zA\" border=\"0\"></img></a> <a href=\"http://feeds.reuters.com/~ff/Reuters/worldNews?a=yCKXoVdS-fs:QbEvgy6qK30:F7zBnMyn0Lo\"><img src=\"http://feeds.feedburner.com/~ff/Reuters/worldNews?i=yCKXoVdS-fs:QbEvgy6qK30:F7zBnMyn0Lo\" border=\"0\"></img></a> <a href=\"http://feeds.reuters.com/~ff/Reuters/worldNews?a=yCKXoVdS-fs:QbEvgy6qK30:V_sGLiPBpWU\"><img src=\"http://feeds.feedburner.com/~ff/Reuters/worldNews?i=yCKXoVdS-fs:QbEvgy6qK30:V_sGLiPBpWU\" border=\"0\"></img></a>\r\n</div><img src=\"http://feeds.feedburner.com/~r/Reuters/worldNews/~4/yCKXoVdS-fs\" height=\"1\" width=\"1\"/>",
+    "date": "2012-11-10T22:05:21.000Z",
+    "pubdate": "2012-11-10T22:05:21.000Z",
+    "pubDate": "2012-11-10T22:05:21.000Z",
+    "link": "http://feeds.reuters.com/~r/Reuters/worldNews/~3/yCKXoVdS-fs/us-yemen-qaeda-idUSBRE8A90HF20121110",
+    "guid": "http://www.reuters.com/article/2012/11/10/us-yemen-qaeda-idUSBRE8A90HF20121110?feedType=RSS&feedName=worldNews",
+    "author": null,
+    "comments": null,
+    "origlink": "http://www.reuters.com/article/2012/11/10/us-yemen-qaeda-idUSBRE8A90HF20121110?feedType=RSS&feedName=worldNews",
+    "image": {},
+    "source": {},
+    "categories": ["worldNews"],
+    "enclosures": [],
+    "rss:@": {},
+    "rss:title": {
+        "@": {},
+        "#": "Yemen tribal leader held under house arrest over al Qaeda ties"
+    },
+    "rss:description": {
+        "@": {},
+        "#": "ADEN (Reuters) - A tribal leader suspected of links to al Qaeda was put under house arrest on Saturday in the southern city of Aden after security forces warned him a week ago to hand himself over to the authorities, an official said.<div class=\"feedflare\">\r\n<a href=\"http://feeds.reuters.com/~ff/Reuters/worldNews?a=yCKXoVdS-fs:QbEvgy6qK30:yIl2AUoC8zA\"><img src=\"http://feeds.feedburner.com/~ff/Reuters/worldNews?d=yIl2AUoC8zA\" border=\"0\"></img></a> <a href=\"http://feeds.reuters.com/~ff/Reuters/worldNews?a=yCKXoVdS-fs:QbEvgy6qK30:F7zBnMyn0Lo\"><img src=\"http://feeds.feedburner.com/~ff/Reuters/worldNews?i=yCKXoVdS-fs:QbEvgy6qK30:F7zBnMyn0Lo\" border=\"0\"></img></a> <a href=\"http://feeds.reuters.com/~ff/Reuters/worldNews?a=yCKXoVdS-fs:QbEvgy6qK30:V_sGLiPBpWU\"><img src=\"http://feeds.feedburner.com/~ff/Reuters/worldNews?i=yCKXoVdS-fs:QbEvgy6qK30:V_sGLiPBpWU\" border=\"0\"></img></a>\r\n</div><img src=\"http://feeds.feedburner.com/~r/Reuters/worldNews/~4/yCKXoVdS-fs\" height=\"1\" width=\"1\"/>"
+    },
+    "rss:link": {
+        "@": {},
+        "#": "http://feeds.reuters.com/~r/Reuters/worldNews/~3/yCKXoVdS-fs/us-yemen-qaeda-idUSBRE8A90HF20121110"
+    },
+    "rss:guid": {
+        "@": {
+            "ispermalink": "false"
+        },
+        "#": "http://www.reuters.com/article/2012/11/10/us-yemen-qaeda-idUSBRE8A90HF20121110?feedType=RSS&feedName=worldNews"
+    },
+    "rss:category": {
+        "@": {},
+        "#": "worldNews"
+    },
+    "rss:pubdate": {
+        "@": {},
+        "#": "Sat, 10 Nov 2012 17:05:21 -0500"
+    },
+    "feedburner:origlink": {
+        "@": {},
+        "#": "http://www.reuters.com/article/2012/11/10/us-yemen-qaeda-idUSBRE8A90HF20121110?feedType=RSS&feedName=worldNews"
+    },
+    "meta": {
+        "#ns": [{
+            "xmlns:feedburner": "http://rssnamespace.org/feedburner/ext/1.0"
+        }, {
+            "xmlns:atom10": "http://www.w3.org/2005/Atom"
+        }, {
+            "xmlns:atom10": "http://www.w3.org/2005/Atom"
+        }],
+        "@": [{
+            "xmlns:feedburner": "http://rssnamespace.org/feedburner/ext/1.0"
+        }],
+        "#type": "rss",
+        "#version": "2.0",
+        "title": "Reuters: World News",
+        "description": "Reuters.com is your source for breaking news, business, financial and investing news, including personal finance and stocks.  Reuters is the leading global provider of news, financial information and technology solutions to the world's media, financial institutions, businesses and individuals.",
+        "date": "2012-11-11T04:41:30.000Z",
+        "pubdate": "2012-11-11T04:41:30.000Z",
+        "pubDate": "2012-11-11T04:41:30.000Z",
+        "link": "http://www.reuters.com",
+        "xmlurl": "http://feeds.reuters.com/Reuters/worldNews",
+        "xmlUrl": "http://feeds.reuters.com/Reuters/worldNews",
+        "author": null,
+        "language": "en-us",
+        "favicon": null,
+        "copyright": "All rights reserved. Users may download and print extracts of content from this website for their own personal and non-commercial use only. Republication or redistribution of Reuters content, including by framing or similar means, is expressly prohibited without the prior written consent of Reuters. Reuters and the Reuters sphere logo are registered trademarks or trademarks of the Reuters group of companies around the world. © Reuters 2012",
+        "generator": null,
+        "image": {
+            "url": "http://www.reuters.com/resources_v2/images/reuters125.png",
+            "title": "Reuters News"
+        },
+        "categories": [],
+        "rss:@": {},
+        "rss:title": {
+            "@": {},
+            "#": "Reuters: World News"
+        },
+        "rss:link": [{
+            "@": {},
+            "#": "http://www.reuters.com"
+        }, {
+            "@": {
+                "xmlns:atom10": "http://www.w3.org/2005/Atom",
+                "rel": "self",
+                "type": "application/rss+xml",
+                "href": "http://feeds.reuters.com/Reuters/worldNews"
+            }
+        }, {
+            "@": {
+                "xmlns:atom10": "http://www.w3.org/2005/Atom",
+                "rel": "hub",
+                "href": "http://pubsubhubbub.appspot.com/"
+            }
+        }],
+        "rss:description": {
+            "@": {},
+            "#": "Reuters.com is your source for breaking news, business, financial and investing news, including personal finance and stocks.  Reuters is the leading global provider of news, financial information and technology solutions to the world's media, financial institutions, businesses and individuals."
+        },
+        "rss:image": {
+            "@": {},
+            "title": {
+                "@": {},
+                "#": "Reuters News"
+            },
+            "width": {
+                "@": {},
+                "#": "120"
+            },
+            "height": {
+                "@": {},
+                "#": "35"
+            },
+            "link": {
+                "@": {},
+                "#": "http://www.reuters.com"
+            },
+            "url": {
+                "@": {},
+                "#": "http://www.reuters.com/resources_v2/images/reuters125.png"
+            }
+        },
+        "rss:language": {
+            "@": {},
+            "#": "en-us"
+        },
+        "rss:lastbuilddate": {
+            "@": {},
+            "#": "Sat, 10 Nov 2012 23:41:30 -0500"
+        },
+        "rss:copyright": {
+            "@": {},
+            "#": "All rights reserved. Users may download and print extracts of content from this website for their own personal and non-commercial use only. Republication or redistribution of Reuters content, including by framing or similar means, is expressly prohibited without the prior written consent of Reuters. Reuters and the Reuters sphere logo are registered trademarks or trademarks of the Reuters group of companies around the world. © Reuters 2012"
+        },
+        "feedburner:info": {
+            "@": {
+                "uri": "http://feeds.reuters.com/Reuters/reuters/worldnews"
+            }
+        },
+        "feedburner:emailserviceid": {
+            "@": {},
+            "#": "Reuters/worldNews"
+        },
+        "feedburner:feedburnerhostname": {
+            "@": {},
+            "#": "http://feedburner.google.com"
+        },
+        "feedburner:feedflare": [{
+            "@": {
+                "href": "http://add.my.yahoo.com/rss?url=http%3A%2F%2Ffeeds.reuters.com%2FReuters%2FworldNews",
+                "src": "http://us.i1.yimg.com/us.yimg.com/i/us/my/addtomyyahoo4.gif"
+            },
+            "#": "Subscribe with My Yahoo!"
+        }, {
+            "@": {
+                "href": "http://www.newsgator.com/ngs/subscriber/subext.aspx?url=http%3A%2F%2Ffeeds.reuters.com%2FReuters%2FworldNews",
+                "src": "http://www.newsgator.com/images/ngsub1.gif"
+            },
+            "#": "Subscribe with NewsGator"
+        }, {
+            "@": {
+                "href": "http://feeds.my.aol.com/add.jsp?url=http%3A%2F%2Ffeeds.reuters.com%2FReuters%2FworldNews",
+                "src": "http://o.aolcdn.com/favorites.my.aol.com/webmaster/ffclient/webroot/locale/en-US/images/myAOLButtonSmall.gif"
+            },
+            "#": "Subscribe with My AOL"
+        }, {
+            "@": {
+                "href": "http://www.bloglines.com/sub/http://feeds.reuters.com/Reuters/worldNews",
+                "src": "http://www.bloglines.com/images/sub_modern11.gif"
+            },
+            "#": "Subscribe with Bloglines"
+        }, {
+            "@": {
+                "href": "http://www.netvibes.com/subscribe.php?url=http%3A%2F%2Ffeeds.reuters.com%2FReuters%2FworldNews",
+                "src": "http://www.netvibes.com/img/add2netvibes.gif"
+            },
+            "#": "Subscribe with Netvibes"
+        }, {
+            "@": {
+                "href": "http://fusion.google.com/add?feedurl=http%3A%2F%2Ffeeds.reuters.com%2FReuters%2FworldNews",
+                "src": "http://buttons.googlesyndication.com/fusion/add.gif"
+            },
+            "#": "Subscribe with Google"
+        }, {
+            "@": {
+                "href": "http://www.pageflakes.com/subscribe.aspx?url=http%3A%2F%2Ffeeds.reuters.com%2FReuters%2FworldNews",
+                "src": "http://www.pageflakes.com/ImageFile.ashx?instanceId=Static_4&fileName=ATP_blu_91x17.gif"
+            },
+            "#": "Subscribe with Pageflakes"
+        }]
+    }
+}

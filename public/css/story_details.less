@@ -1,0 +1,40 @@
+#details_close {
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: inherit;
+}
+
+#details_close:hover {
+    text-decoration: none;
+}
+
+#story_details {
+    background-color: rgba(21, 21, 21, 0.9);
+    color: #ccc;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#story_details {
+    .transition(right, .2s);
+
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+
+    .border-box;
+    padding: 30px;
+    right: -33%;
+    width: 33%;
+}
+
+#story_details.expanded {
+    right: 0;
+}
+
+.story {
+    margin-bottom: 40px;
+}

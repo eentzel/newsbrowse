@@ -53,15 +53,16 @@ server.listen(8000);
 
 io.sockets.on('connection', function (socket) {
   var offset = 0;
-  var push = function() {
-    NewsEntry.find({}).skip(offset).limit(5).execFind(function (err,data) {
+  var push = function(limit) {
+    limit = (typeof limit === "undefined") ? 10 : limit;
+    NewsEntry.find({}).skip(offset).limit(limit).execFind(function (err,data) {
       socket.emit('news', data);
       offset += data.length;
     });
   };
 
-  push();
-  var tick = setInterval(push, 5000);
+  push(10);
+  var tick = setInterval(push, 10000);
 
   socket.on('disconnect', function () {
     clearInterval(tick);
@@ -71,6 +72,6 @@ io.sockets.on('connection', function (socket) {
 reuters.fetchFeeds();
 setInterval(function() {
   reuters.fetchFeeds();
-}, 120000);
+}, 300000);
 
 console.log('Server running at http://0.0.0.0:8000/');

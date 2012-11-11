@@ -12,7 +12,7 @@ var City = env.City;
 
 //var feeds = ['http://feeds.bbci.co.uk/news/world/rss.xml', 
 //'http://www.nytimes.com/services/xml/rss/nyt/World.xml', 
-var feeds = ['http://feeds.reuters.com/Reuters/worldNews'];
+var feeds = ['http://feeds.reuters.com/Reuters/worldNews', 'http://feeds.reuters.com/Reuters/domesticNews', 'http://www.nytimes.com/services/xml/rss/nyt/World.xml'];
 
 //var source_feed = 'http://feeds.bbci.co.uk/news/world/rss.xml';
 
@@ -28,8 +28,8 @@ function toEntry(entry, loc) {
     story_url : entry.link,
     thumb_url: thumbnail || "",
   };
-  if(loc.location) {
-    e['location'] = loc.location;
+  if(loc.latitude) {
+    e['location'] = [loc.latitude, loc.longitude];
     e['formatted_address'] = loc.name;
   }
   return e;
@@ -48,10 +48,13 @@ function saveEntry(e) {
 function handleEntry(entry) {
   var content = entry.title + " - " + entry.description + " - " + entry.summary;
   aboutCountries = findCountry(content);
-  var aboutCities = _.map(aboutCountries, function(country) {
-    return [country, findCity(content, country)];
-  });
-  console.log(aboutCities);
+  // var aboutCities = _.map(aboutCountries, function(country) {
+  //   return [country, findCity(content, country)];
+  // });
+  var firstCountry = _.first(aboutCountries);
+  console.log(firstCountry);
+  if(firstCountry==undefined) return false; 
+  findCity(entry, content, firstCountry);
 }
 
 function findCountry(content) {
@@ -65,11 +68,12 @@ function findCountry(content) {
   });
 }
 
-function findCity(content, country) {
-  City.find({country_code : country.iso_code }).where('asciiname').equals(/^New/).sort('-population').execFind(function(err, cities) {
-    _.filter(cities, function(city) {
+function findCity(entry, content, country) {
+  //.where('asciiname').equals(/^New/)
+  City.find({country_code : country.iso_code }).sort('-population').execFind(function(err, cities) {
+    var mentionedCities = _.filter(cities, function(city) {
       names = [city.asciiname].concat(city.alternatenames)
-      _.find(names, function(name) {
+      return _.find(names, function(name) {
         if(content.search(new RegExp(name, "i"))>0) {
           console.log(name + " => " + content);
           return true;
@@ -77,24 +81,27 @@ function findCity(content, country) {
           //console.log(name + " != " + content);
           return false;
         }
-      });
+      }) ? true : false;
     });
-    console.log('DONE');
+    var firstCity = _.first(mentionedCities)
+    if(firstCity==undefined) return false;
+    var e = toEntry(entry, firstCity);
+    saveEntry(e);
   });
 }
 
-Country.find({ iso_code : 'US' }).execFind(function(err, data) {
-  us = data.shift();
-  findCity("This is about New York in the United States", us);
-});
+// Country.find({ iso_code : 'US' }).execFind(function(err, data) {
+//   us = data.shift();
+//   findCity({}, "This is about New York in the United States", us);
+// });
 
-// function callbackCountries(err,data) {
-//   countries = data;
-//   _.each(feeds, function(s) {
-//     var source_feed = s;
-//     feedparser.parseUrl(source_feed)
-//     .on('article', handleEntry);
-//   });
-// }
-// 
-// Country.find({}).execFind(callbackCountries);
+function callbackCountries(err,data) {
+  countries = data;
+  _.each(feeds, function(s) {
+    var source_feed = s;
+    feedparser.parseUrl(source_feed)
+    .on('article', handleEntry);
+  });
+}
+
+Country.find({}).execFind(callbackCountries);

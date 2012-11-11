@@ -29,6 +29,7 @@ var StoryMarker = (function () {
     Marker.prototype.createDomNodes = function() {
         this.element = document.createElement('img');
         this.element.className = "story_marker " + this.className;
+        this.element.title = this.title;
         this.element.src = this.icon;
         setStyle( this.element,  "position: absolute;" );
     };

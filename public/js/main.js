@@ -100,10 +100,11 @@ function initMap(mapOpts) {
             });
         });
 
-        var theClusterer = new MarkerClusterer(theMap, theMarkers, {averageCenter: true});
+        // var theClusterer = new MarkerClusterer(theMap, theMarkers, {averageCenter: true});
         theMarkers.forEach(function (marker) {
+            marker.setMap(theMap);
             $(marker.element).on('click', markerClickHandler.bind(this, marker));
         });
-        google.maps.event.addListener(theClusterer, 'click', clusterClickHandler);
+        // google.maps.event.addListener(theClusterer, 'click', clusterClickHandler);
     });
 }

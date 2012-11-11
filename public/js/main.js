@@ -4,13 +4,13 @@ var WORLD_STORIES = '/api/v1/stories/top';
 
 $(document).ready(function () {
   var mapOpts = {
-    // if changing center and mapTypeId, also change the corresponding class names on div#map in index.html
+    // if changing zoom here, also change the corresponding class name on div#map in index.html
     center: new google.maps.LatLng(48.54416, 89.95123),
     zoom: 3,
     minZoom: 2,
     backgroundColor: 'rgb(21, 21, 21)',
     mapTypeControlOptions: { position: google.maps.ControlPosition.TOP_LEFT },
-    mapTypeId: google.maps.MapTypeId.SATELLITE
+    mapTypeId: preferedMapType()
   };
 
   if (false && "geolocation" in navigator) {
@@ -41,6 +41,13 @@ $(document).ready(function () {
   });
 
 });
+
+function preferedMapType() {
+  if (window.localStorage) {
+    return window.localStorage.getItem('preferedMapType') || google.maps.MapTypeId.SATELLITE;
+  }
+  return google.maps.MapTypeId.SATELLITE;
+}
 
 function showStoryDetails(stories) {
   var detailsTemplate = $('#details_template').html();
@@ -76,6 +83,7 @@ function clusterClickHandler(cluster) {
 
 function initMap(mapOpts) {
   var theMap = new google.maps.Map(document.getElementById('map'), mapOpts);
+  $('#map').addClass(theMap.getMapTypeId());
 
   var socket = io.connect();
   socket.on('news', function (stories) {
@@ -117,7 +125,11 @@ function initMap(mapOpts) {
   });
 
   google.maps.event.addListener(theMap, 'maptypeid_changed', function () {
-    $('#map').removeClass('roadmap satellite').addClass(theMap.getMapTypeId());
+    var type = theMap.getMapTypeId();
+    $('#map').removeClass('roadmap satellite').addClass(type);
+    if (window.localStorage) {
+      window.localStorage.setItem('preferedMapType', type);
+    }
   });
 
 }

@@ -5,7 +5,8 @@ var PUSH_FREQUENCY=process.env.PUSH_FREQUENCY || 5000;
 
 var application_root = __dirname,
     express = require("express"),
-    path = require("path");
+    path = require("path"),
+    ratchet = require('ratchetio');
 var io = require('socket.io');
 var env = require('./config/environment');
 
@@ -20,6 +21,9 @@ var reuters = require('./lib/reuters');
 
 // Config
 
+// register uncaught error handler
+ratchet.handleUncaughtExceptions("ffffffffffffffffffffffffffffffff");
+
 app.configure(function () {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -27,6 +31,7 @@ app.configure(function () {
   app.use(require('less-middleware')({ src: path.join(application_root, "public") }));
   app.use(express.static(path.join(application_root, "public")));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(ratchet.errorHandler());
 });
 
 app.get('/api/v1/stories/top', function (req, res) {
@@ -80,3 +85,4 @@ setInterval(function() {
 }, FETCH_FREQUENCY);
 
 console.log('Server running at http://0.0.0.0:8000/');
+ratchet.reportMessage("Server started up","info");

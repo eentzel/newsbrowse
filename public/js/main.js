@@ -126,7 +126,7 @@ function initMap(mapOpts) {
 
   google.maps.event.addListener(theMap, 'maptypeid_changed', function () {
     var type = theMap.getMapTypeId();
-    $('#map').removeClass('roadmap satellite').addClass(type);
+    $('#map').removeClass('roadmap satellite hybrid terrain').addClass(type);
     if (window.localStorage) {
       window.localStorage.setItem('preferedMapType', type);
     }

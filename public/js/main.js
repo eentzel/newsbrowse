@@ -99,24 +99,14 @@ function initMap(mapOpts) {
       var m;
       var location = jitter(story.location);
       story.date = (new Date(story.created_at)).toDateString();
-      if (story.main_image) {
-        m = new StoryMarker({
-          position: location,
-          story: story,
-          icon: story.main_image,
-          title: story.title
-        });
-        $(m.element).on('click', markerClickHandler.bind(this, m));
-      }
-      else {
-        m = new google.maps.Marker({
-          position: location,
-          story: story,
-          icon: '/img/newspaper.png',
-          title: story.title
-        });
-        google.maps.event.addListener(m, 'click', markerClickHandler.bind(this, m));
-      }
+      m = new StoryMarker({
+        position: location,
+        className: story.main_image ? 'border' : '',
+        story: story,
+        icon: story.main_image || '/img/newspaper.png',
+        title: story.title
+      });
+      $(m.element).on('click', markerClickHandler.bind(this, m));
       return m;
     });
 

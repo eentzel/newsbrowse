@@ -11,6 +11,7 @@ var StoryMarker = (function () {
         this.story = opts.story;
         this.icon = opts.icon;
         this.title = opts.title;
+        this.className = opts.className;
 
         this.createDomNodes();
     }
@@ -27,7 +28,7 @@ var StoryMarker = (function () {
 
     Marker.prototype.createDomNodes = function() {
         this.element = document.createElement('img');
-        this.element.className = "story_marker";
+        this.element.className = "story_marker " + this.className;
         this.element.src = this.icon;
         setStyle( this.element,  "position: absolute;" );
     };

@@ -6,6 +6,8 @@ var env = require('./config/environment'),
     _ = require('underscore'),
     geocoder = require('geocoder');
 
+_.str = require('underscore.string');
+
 var Country = env.Country;
 var NewsEntry = env.NewsEntry;
 var City = env.City;
@@ -25,8 +27,12 @@ function toEntry(entry, loc) {
     thumb_url: thumbnail || "",
     source_feed: entry.meta.xmlurl
   };
-  if(loc.latitude) {
-    e['location'] = [loc.latitude, loc.longitude];
+  if(loc['latitude']) {
+      e['location'] = [loc.latitude, loc.longitude];
+      e['formatted_address'] = loc.name;
+  }
+  else if(loc['location']) {
+    e['location'] = loc.location;
     e['formatted_address'] = loc.name;
   }
   return e;
@@ -35,27 +41,25 @@ function toEntry(entry, loc) {
 function saveEntry(e) {
   NewsEntry.update({ guid : e.guid }, { $set: e }, {upsert: true}, function (err, numberAffected, raw) {
     if (err) throw(err);
-    //console.log('The number of updated documents was %d', numberAffected);
-    //console.log('The raw response from Mongo was ', raw);
     console.log('Entry saved: ' + JSON.stringify(e.guid));
   });
 }
 
 
 function handleEntry(entry) {
-  var content = entry.title + " - " + entry.description + " - " + entry.summary;
-  aboutCountries = findCountry(content);
+  var content = _.str.stripTags(entry.title + " - " + entry.description + " - " + entry.summary);
+  var firstCountry = findCountry(content);
   // var aboutCities = _.map(aboutCountries, function(country) {
   //   return [country, findCity(content, country)];
   // });
-  var firstCountry = _.first(aboutCountries);
+  //var firstCountry = _.first(aboutCountries);
   console.log(firstCountry);
   if(firstCountry==undefined) return false; 
   findCity(entry, content, firstCountry);
 }
 
 function findCountry(content) {
-  return _.filter(countries, function(country) {
+  return _.find(countries, function(country) {
     if(content.search(new RegExp(country.name, "i"))>0) {
       //console.log(country.name + " => " + content);
       return true;
@@ -68,11 +72,11 @@ function findCountry(content) {
 function findCity(entry, content, country) {
   //.where('asciiname').equals(/^New/)
   City.find({country_code : country.iso_code }).sort('-population').execFind(function(err, cities) {
-    var mentionedCities = _.filter(cities, function(city) {
+    var mentionedCities = _.find(cities, function(city) {
       names = [city.asciiname].concat(city.alternatenames)
       return _.find(names, function(name) {
         if(content.search(new RegExp(name, "i"))>0) {
-          console.log(name + " => " + content);
+          // console.log(name + " => " + content);
           return true;
         } else {
           //console.log(name + " != " + content);
@@ -80,9 +84,14 @@ function findCity(entry, content, country) {
         }
       }) ? true : false;
     });
-    var firstCity = _.first(mentionedCities)
-    if(firstCity==undefined) return false;
-    var e = toEntry(entry, firstCity);
+    var firstCity = mentionedCities; //_.first(mentionedCities)
+    var e = null;
+    if(firstCity==undefined) {
+      e = toEntry(entry, country);
+    }
+    else {
+      e = toEntry(entry, firstCity);
+    }
     saveEntry(e);
   });
 }

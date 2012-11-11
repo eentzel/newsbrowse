@@ -18,7 +18,8 @@
     "prompt": "0.2.8",
     "underscore": "1.4.2",
     "geocoder" : "0.1.0",
-    "async" : "0.1.22"
+    "async" : "0.1.22",
+    "underscore.string" : "2.3.0"
   },
   "engines": {
     "node": "0.8.x"

@@ -1,7 +1,6 @@
 /* global google MarkerClusterer $ */
 
-// var WORLD_STORIES = '/api/v1/stories/top';
-var WORLD_STORIES = '/api/v1/stories/within?bottomleftlat=-89.48765458372031&bottomleftlng=-180&toprightlat=89.44365991287759&toprightlng=180';
+var WORLD_STORIES = '/api/v1/stories/top';
 
 $(document).ready(function () {
     var mapOpts = {

@@ -2,6 +2,8 @@ var env = require('./config/environment'),
     url = require('url'),
     feedparser = require('feedparser'),
     mongoose = require('mongoose'),
+    request = require('request'),
+    cheerio = require('cheerio'),
     prompt = require('prompt'),
     _ = require('underscore'),
     geocoder = require('geocoder');
@@ -15,10 +17,7 @@ var City = env.City;
 var feeds = ['http://feeds.reuters.com/Reuters/worldNews', 'http://feeds.reuters.com/Reuters/domesticNews'];
 
 function toEntry(entry, loc, callback) {
-  var thumbnail = _.chain(entry.enclosures).pluck('url').filter(function(u) {
-                    return /jpg$/.test(u);
-                  }).value()[0];
-
+  var story_image;
   var e = {
     guid : entry.guid,
     title : entry.title,
@@ -36,13 +35,16 @@ function toEntry(entry, loc, callback) {
     e['formatted_address'] = loc.name;
   }
 
-  if (thumbnail) {
-    e.thumb_url = thumbnail;
-    callback(e);
-  }
-  else {
-    callback(e);
-  }
+  request(e.story_url, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var $ = cheerio.load(body);
+      story_image = $('#articleImage img, #image0, #photoFullSize img').attr('src');
+    }
+    if (story_image) {
+      e.main_image = story_image;
+      callback(e);
+    }
+  });
 }
 
 function saveEntry(e) {

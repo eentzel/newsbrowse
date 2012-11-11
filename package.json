@@ -18,6 +18,8 @@
     "prompt": "0.2.8",
     "underscore": "1.4.2",
     "geocoder" : "0.1.0",
+    "cheerio": "0.10.1",
+    "request": "2.12.0",
     "async" : "0.1.22",
     "underscore.string" : "2.3.0"
   },

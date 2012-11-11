@@ -42,8 +42,8 @@ function toEntry(entry, loc, callback) {
     }
     if (story_image) {
       e.main_image = story_image;
-      callback(e);
     }
+    callback(e);
   });
 }
 

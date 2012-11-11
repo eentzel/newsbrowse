@@ -112,6 +112,7 @@ function initMap(mapOpts) {
         m = new google.maps.Marker({
           position: location,
           story: story,
+          icon: '/img/newspaper.png',
           title: story.title
         });
         google.maps.event.addListener(m, 'click', markerClickHandler.bind(this, m));

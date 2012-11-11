@@ -89,6 +89,7 @@ function initMap(mapOpts) {
   socket.on('news', function (stories) {
     var theMarkers = stories.map(function (story) {
       var m;
+      story.date = (new Date(story.created_at)).toDateString();
       if (story.main_image) {
         m = new StoryMarker({
           position: new google.maps.LatLng(story.location[0], story.location[1]),

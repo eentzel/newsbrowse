@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html xmlns:fb="http://ogp.me/ns/fb#" class="no-js">
     <head>
         <script>
         var _ratchetParams = {"server.environment": "production"};
@@ -35,6 +35,14 @@
         mixpanel.init("68f5257f80a609c778bf85b3e8f173a4");</script><!-- end Mixpanel -->
     </head>
     <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
 
         <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
 
@@ -49,27 +57,17 @@
                     <a class="brand" href="#">newsbrow.se</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
                             <li><a href="#about" data-toggle="modal">About</a></li>
                             <li>
                                 <a href="https://twitter.com/share" class="twitter-share-button" data-text="Browse world news with newsbrow.se" data-hashtags="nodeknockout">Tweet</a>
                                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                             </li>
                             <li>
+                                <fb:like send="false" width="450" show_faces="false"></fb:like>
+                            </li>
+                            <li>
                                 <iframe src="http://nodeknockout.com/iframe/ateam" frameborder=0 scrolling=no allowtransparency=true width=115 height=25>
                                 </iframe>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li class="nav-header">Nav header</li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
                             </li>
                         </ul>
                     </div><!--/.nav-collapse -->

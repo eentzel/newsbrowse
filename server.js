@@ -61,7 +61,7 @@ io.sockets.on('connection', function (socket) {
     });
   };
 
-  push(10);
+  push(100);
   var tick = setInterval(push, 10000);
 
   socket.on('disconnect', function () {

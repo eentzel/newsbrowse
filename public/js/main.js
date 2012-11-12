@@ -84,8 +84,8 @@ function clusterClickHandler(cluster) {
 
 function jitter(loc) {
   return new google.maps.LatLng(
-    loc[0] + Math.random() / 10,
-    loc[1] + Math.random() / 10
+    loc[0] + Math.random() / 3,
+    loc[1] + Math.random() / 3
   );
 }
 

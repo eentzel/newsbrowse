@@ -1,6 +1,6 @@
 {
   "name": "nko3-ateam",
-  "version": "0.0.7-2",
+  "version": "0.0.7-3",
   "description": "ATeam",
   "main": "server.js",
   "scripts": {
@@ -28,5 +28,8 @@
   "engines": {
     "node": "0.8.x"
   },
-  "subdomain": "ateam.nko3"
+  "subdomain": "ateam.nko3",
+  "domains": [
+      "newsbrow.se"
+  ]
 }
